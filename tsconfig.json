@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true
+    },
+    "files": [
+        "typings/index.d.ts",
+        "src/Pin.ts",
+        "__tests__/Pin.spec.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
