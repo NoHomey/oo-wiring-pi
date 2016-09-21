@@ -1,0 +1,41 @@
+{
+  "name": "oo-wiring-pi",
+  "version": "0.0.0",
+  "description": "Object Oriented WiringPi for typescript/javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && jest --verbose --testPathPattern __tests__/.+.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoHomey/oo-wiring-pi.git"
+  },
+  "keywords": [
+    "oo",
+    "wiring-pi",
+    "object oriented",
+    "wrapper",
+    "typescript",
+    "rpi",
+    "raspberry-pi",
+    "io",
+    "pin",
+    "i2c",
+    "spi",
+    "serial",
+    "pwm",
+    "soft pwm",
+    "bcm2835",
+    "raspberrypi",
+    "pi",
+    "raspberry",
+    "gpio",
+    "wiringPi"
+  ],
+  "author": "Ivo Stratev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NoHomey/oo-wiring-pi/issues"
+  },
+  "homepage": "https://github.com/NoHomey/oo-wiring-pi#readme"
+}
