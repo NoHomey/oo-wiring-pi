@@ -12,5 +12,12 @@ describe('Pin', () => {
                 let innUse: Pin = new Pin(9);
             }).toThrowError(Error);
         });
+
+        it('thorws Error describing that pin is in use and to call .release() if pin change is wanted when pin is in use', () => {
+            expect(() => {
+                let notInUse: Pin = new Pin(6);
+                let inUse: Pin = new Pin(6);
+            }).toThrowError('pin: 6 is in use, call .release() on the first instance constructed with pin: 6 to change pin mode or settings');
+        });
     });
 });
