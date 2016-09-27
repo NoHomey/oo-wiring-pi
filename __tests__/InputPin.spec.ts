@@ -44,7 +44,7 @@ describe('InputPin', () => {
 
         describe('read', () => {
             it('digitalReads from the pin which was used when constructed', () => {
-                expect(pin.read()).toBe(HIGH);
+                expect(pin.read()).toBe(true);
             });
         });
     });
