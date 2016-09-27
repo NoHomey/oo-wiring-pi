@@ -8,8 +8,8 @@ describe('Pin', () => {
 
         it('thorws Error when pin is in use', () => {
             expect(() => {
-                let notInUse: Pin = new Pin(9);
-                let innUse: Pin = new Pin(9);
+                let notInUse: Pin = new Pin(8);
+                let inUse: Pin = new Pin(8);
             }).toThrowError(Error);
         });
 
