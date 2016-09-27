@@ -7,7 +7,9 @@
     "files": [
         "typings/index.d.ts",
         "src/Pin.ts",
-        "__tests__/Pin.spec.ts"
+        "src/InputPin.ts",
+        "__tests__/Pin.spec.ts",
+        "__tests__/InputPin.spec.ts"
     ],
     "exclude": [
         "node_modules"

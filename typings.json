@@ -1,5 +1,7 @@
 {
   "globalDependencies": {
-    "jest": "registry:dt/jest"
+    "node": "registry:dt/node",
+    "jest": "registry:dt/jest",
+    "wiring-pi": "registry:dt/wiring-pi"
   }
 }
