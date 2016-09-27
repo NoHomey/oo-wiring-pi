@@ -22,7 +22,7 @@ describe('Pin', () => {
     });
 
     describe('release', () => {
-        it('releases the pin which prevents errors to be throw when constructing new instance', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
             expect(() => {
                 let notInUse: Pin = new Pin(3);
                 notInUse.release();

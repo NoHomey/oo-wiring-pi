@@ -1,10 +1,12 @@
 jest.mock('wiring-pi');
-import { pinMode, INPUT } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, LOW, digitalRead } from 'wiring-pi';
 import InputPin from '../src/InputPin';
+
+type DigitalReadMock = jest.Mock<(pin: number) => number>;
 
 describe('InputPin', () => {
     describe('constructor', () => {
-        it('should set the given pin as INPUT', () => {
+        it('sets the given pin as INPUT', () => {
             let pin: InputPin = new InputPin(9);
             expect(pinMode).toBeCalledWith(9, INPUT);
         });
@@ -23,12 +25,27 @@ describe('InputPin', () => {
     });
 
     describe('release', () => {
-        it('releases the pin which prevents errors to be throw when constructing new instance', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
             expect(() => {
                 let notInUse: InputPin = new InputPin(3);
                 notInUse.release();
                 let inUse: InputPin = new InputPin(3);
             }).not.toThrowError();
+        });
+    });
+
+    describe('reading', () => {
+        let pin: InputPin;
+
+        beforeEach(() => {
+            (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
+            pin = new InputPin(12);
+        });
+
+        describe('read', () => {
+            it('digitalReads from the pin which was used when constructed', () => {
+                expect(pin.read()).toBe(HIGH);
+            });
         });
     });
 });
