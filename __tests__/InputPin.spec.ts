@@ -21,4 +21,14 @@ describe('InputPin', () => {
             }).toThrowError(Error);
         });
     });
+
+    describe('release', () => {
+        it('releases the pin which prevents errors to be throw when constructing new instance', () => {
+            expect(() => {
+                let notInUse: InputPin = new InputPin(3);
+                notInUse.release();
+                let inUse: InputPin = new InputPin(3);
+            }).not.toThrowError();
+        });
+    });
 });
