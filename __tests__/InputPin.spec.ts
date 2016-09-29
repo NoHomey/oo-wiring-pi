@@ -90,6 +90,15 @@ describe('InputPin', () => {
             it('pulses in HIGH to LOW by calling pulseIn with the constructed pin and HIGH', () => {
                 (pulseIn as PulseInMock).mockReturnValueOnce(23);
                 expect(pin.pulseInHighToLow()).toBe(23);
+                expect(pulseIn).toBeCalledWith(12, HIGH);
+            });
+        });
+
+        describe('pulseInLowToHigh', () => {
+            it('pulses in LOW to HIGH by calling pulseIn with the constructed pin and LOW', () => {
+                (pulseIn as PulseInMock).mockReturnValueOnce(12);
+                expect(pin.pulseInLowToHigh()).toBe(12);
+                expect(pulseIn).toBeCalledWith(12, LOW);
             });
         });
     });
