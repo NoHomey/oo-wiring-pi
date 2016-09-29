@@ -37,14 +37,33 @@ describe('InputPin', () => {
     describe('reading', () => {
         let pin: InputPin;
 
-        beforeEach(() => {
-            (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
-            pin = new InputPin(12);
-        });
+        beforeEach(() => pin = new InputPin(12));
 
         describe('read', () => {
+            beforeEach(() => {
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(LOW);
+            });
+
             it('digitalReads from the pin which was used when constructed', () => {
                 expect(pin.read()).toBe(true);
+                expect(digitalRead).lastCalledWith(12);
+                expect(pin.read()).toBe(false);
+                expect(digitalRead).lastCalledWith(12);
+            });
+        });
+
+        describe('isHigh', () => {
+            it('returns true when digitalRead value is HIGH', () => {
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
+                expect(pin.isHigh()).toBe(true);
+                expect(digitalRead).toBeCalledWith(12);
+            });
+
+            it('returns false when digitalRead value is LOW', () => {
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(LOW);
+                expect(pin.isHigh()).toBe(false);
+                expect(digitalRead).toBeCalledWith(12);
             });
         });
     });
