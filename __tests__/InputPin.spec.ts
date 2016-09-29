@@ -1,8 +1,9 @@
 jest.mock('wiring-pi');
-import { pinMode, INPUT, HIGH, LOW, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, LOW, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl, pulseIn } from 'wiring-pi';
 import { InputPin, Pull } from '../src/InputPin';
 
 type DigitalReadMock = jest.Mock<(pin: number) => number>;
+type PulseInMock = jest.Mock<(pin: number, state: number) => number>;
 
 describe('InputPin', () => {
     describe('constructor', () => {
@@ -82,6 +83,13 @@ describe('InputPin', () => {
                 (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
                 expect(pin.isLow()).toBe(false);
                 expect(digitalRead).toBeCalledWith(12);
+            });
+        });
+
+        describe('pulseInHighToLow', () => {
+            it('pulses in HIGH to LOW by calling pulseIn with the constructed pin and HIGH', () => {
+                (pulseIn as PulseInMock).mockReturnValueOnce(23);
+                expect(pin.pulseInHighToLow()).toBe(23);
             });
         });
     });
