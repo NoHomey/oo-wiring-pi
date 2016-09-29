@@ -1,13 +1,13 @@
 jest.mock('wiring-pi');
-import { pinMode, INPUT, PUD_OFF, PUD_UP, PUD_DOWN, INT_EDGE_SETUP, INT_EDGE_RISING, INT_EDGE_BOTH, INT_EDGE_FALLING, pullUpDnControl, wiringPiISR } from 'wiring-pi';
+import { pinMode, INPUT, PUD_OFF, PUD_UP, PUD_DOWN, INT_EDGE_SETUP, INT_EDGE_RISING, INT_EDGE_BOTH, INT_EDGE_FALLING, pullUpDnControl, wiringPiISR, wiringPiISRCancel } from 'wiring-pi';
 import { InterruptHandlerPin, Pull, Edge } from '../src/InterruptHandlerPin';
 
 describe('InterruptHandlerPin', () => {
-    describe('constructor', () => {
-        function handler(delta: number): void {
-            console.log(`interrupt after ${delta}`);
-        }
+    function handler(delta: number): void {
+        console.log(`interrupt after ${delta}`);
+    }
 
+    describe('constructor', () => {
         describe('when only pin and handler are provided', () => {
             it('sets pin to input and confugures pull off and and registers interrupt handler for the given pin with INT_EDGE_SETUP', () => {
                 let pin: InterruptHandlerPin = new InterruptHandlerPin(1, handler);
@@ -54,6 +54,22 @@ describe('InterruptHandlerPin', () => {
                 expect(pullUpDnControl).toBeCalledWith(6, PUD_UP);
                 expect(wiringPiISR).toBeCalledWith(6, INT_EDGE_SETUP, handler);
             });
+        });
+    });
+
+    describe('release', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
+            expect(() => {
+                let notInUse: InterruptHandlerPin = new InterruptHandlerPin(7, handler);
+                notInUse.release();
+                let inUse: InterruptHandlerPin = new InterruptHandlerPin(7, handler);
+            }).not.toThrowError();
+        });
+
+        it('removes the inpterupt handler ot the constructed pin throughout a call to wiringPiISRCancel', () => {
+            let pin: InterruptHandlerPin = new InterruptHandlerPin(8, handler);
+            pin.release();
+            expect(wiringPiISRCancel).toBeCalledWith(8);
         });
     });
 });

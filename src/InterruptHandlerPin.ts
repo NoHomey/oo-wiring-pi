@@ -1,5 +1,5 @@
 import { InputPin, Pull } from './InputPin';
-import { INT_EDGE_SETUP, INT_EDGE_RISING, INT_EDGE_FALLING, INT_EDGE_BOTH ,wiringPiISR } from 'wiring-pi';
+import { INT_EDGE_SETUP, INT_EDGE_RISING, INT_EDGE_FALLING, INT_EDGE_BOTH , wiringPiISR } from 'wiring-pi';
 
 export { Pull }
 
