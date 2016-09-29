@@ -1,10 +1,15 @@
 import Pin from './Pin';
-import { pinMode, OUTPUT } from 'wiring-pi';
+import WritablePin from './WritablePin';
+import { pinMode, OUTPUT, HIGH, LOW, digitalWrite } from 'wiring-pi';
 
-export class OutputPin extends Pin {
+export class OutputPin extends Pin implements WritablePin<boolean> {
     public constructor(pin: number) {
         super(pin);
         pinMode(pin, OUTPUT);
+    }
+
+    public write(state: boolean): void {
+        digitalWrite(this.pin, state ? HIGH : LOW);
     }
 }
 
