@@ -8,5 +8,17 @@ describe('OutputPin', () => {
             let pin: OutputPin = new OutputPin(9);
             expect(pinMode).toBeCalledWith(9, OUTPUT);
         });
+
+        it('shouldn\'t throw if the given pin is not in use', () => {
+            let pin: OutputPin;
+            expect(() => pin = new OutputPin(6)).not.toThrowError();
+        });
+
+        it('thorws Error when pin is in use', () => {
+            expect(() => {
+                let notInUse: OutputPin = new OutputPin(8);
+                let inUse: OutputPin = new OutputPin(8);
+            }).toThrowError(Error);
+        });
     });
 });
