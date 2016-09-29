@@ -21,4 +21,14 @@ describe('OutputPin', () => {
             }).toThrowError(Error);
         });
     });
+
+    describe('release', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
+            expect(() => {
+                let notInUse: OutputPin = new OutputPin(3);
+                notInUse.release();
+                let inUse: OutputPin = new OutputPin(3);
+            }).not.toThrowError();
+        });
+    });
 });
