@@ -9,7 +9,11 @@ export class OutputPin extends Pin implements WritablePin<boolean> {
     }
 
     public write(state: boolean): void {
-        digitalWrite(this.pin, state ? HIGH : LOW);
+        if(state) {
+            this.high();
+        } else {
+            this.low();
+        }
     }
 
     public high(): void {
