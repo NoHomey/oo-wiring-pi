@@ -1,6 +1,6 @@
 import Pin from './Pin';
 import ReadablePin from './ReadablePin';
-import { pinMode, INPUT, HIGH, LOW, digitalRead } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, digitalRead } from 'wiring-pi';
 
 export class InputPin extends Pin implements ReadablePin<boolean> {
     public constructor(pin: number) {
