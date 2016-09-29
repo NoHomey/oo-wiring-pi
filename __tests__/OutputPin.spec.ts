@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { pinMode, OUTPUT } from 'wiring-pi';
+import { pinMode, OUTPUT, HIGH, LOW, digitalWrite } from 'wiring-pi';
 import OutputPin from '../src/OutputPin';
 
 describe('OutputPin', () => {
@@ -29,6 +29,23 @@ describe('OutputPin', () => {
                 notInUse.release();
                 let inUse: OutputPin = new OutputPin(3);
             }).not.toThrowError();
+        });
+    });
+
+    describe('writing', () => {
+        let pin: OutputPin;
+
+        beforeEach(() => pin = new OutputPin(12));
+
+        afterEach(() => pin.release());
+
+        describe('write', () => {
+            it('digitalWrites to the pin which was used when constructed', () => {
+                pin.write(true);
+                expect(digitalWrite).lastCalledWith(12, HIGH);
+                pin.write(false);
+                expect(digitalWrite).lastCalledWith(12, LOW);
+            });
         });
     });
 });
