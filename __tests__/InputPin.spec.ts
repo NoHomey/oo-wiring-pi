@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { pinMode, INPUT, HIGH, LOW, PUD_OFF, PUD_UP, digitalRead, pullUpDnControl } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, LOW, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl } from 'wiring-pi';
 import { InputPin, Pull } from '../src/InputPin';
 
 type DigitalReadMock = jest.Mock<(pin: number) => number>;
@@ -20,6 +20,11 @@ describe('InputPin', () => {
         it('sets pullUpDnControl to PUD_UP if pull is Pull.Up', () => {
             let pin: InputPin = new InputPin(2, Pull.Up);
             expect(pullUpDnControl).toBeCalledWith(2, PUD_UP);
+        });
+
+        it('sets pullUpDnControl to PUD_DOWN if pull is Pull.Down', () => {
+            let pin: InputPin = new InputPin(4, Pull.Down);
+            expect(pullUpDnControl).toBeCalledWith(4, PUD_DOWN);
         });
 
         it('shouldn\'t throw if the given pin is not in use', () => {
