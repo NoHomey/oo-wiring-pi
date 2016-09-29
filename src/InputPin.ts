@@ -1,6 +1,6 @@
 import Pin from './Pin';
 import ReadablePin from './ReadablePin';
-import { pinMode, INPUT, HIGH, PUD_OFF, PUD_UP, digitalRead, pullUpDnControl } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl } from 'wiring-pi';
 
 export enum Pull {
     Off,
@@ -18,6 +18,9 @@ export class InputPin extends Pin implements ReadablePin<boolean> {
                 break;
             case Pull.Up:
                 pullUpDnControl(pin, PUD_UP);
+                break;
+            case Pull.Down:
+                pullUpDnControl(pin, PUD_DOWN);
                 break;
         }
     }
