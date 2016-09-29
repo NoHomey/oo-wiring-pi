@@ -9,8 +9,10 @@
         "src/Pin.ts",
         "src/ReadablePin.ts",
         "src/InputPin.ts",
+        "src/OutputPin.ts",
         "__tests__/Pin.spec.ts",
-        "__tests__/InputPin.spec.ts"
+        "__tests__/InputPin.spec.ts",
+        "__tests__/OutputPin.spec.ts"
     ],
     "exclude": [
         "node_modules"
