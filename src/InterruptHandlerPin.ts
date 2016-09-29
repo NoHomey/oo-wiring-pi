@@ -14,19 +14,21 @@ export enum Edge {
 
 export class InterruptHandlerPin extends InputPin {
     public constructor(pin: number, handler: InterruptHandler, pull: Pull = Pull.Off, edge: Edge = Edge.Setup) {
+        let intEdge: number;
         super(pin, pull);
         switch(edge) {
             case Edge.Rising:
-                wiringPiISR(pin, INT_EDGE_RISING, handler);
+                intEdge = INT_EDGE_RISING;
                 break;
             case Edge.Falling:
-                wiringPiISR(pin, INT_EDGE_FALLING, handler);
+                intEdge = INT_EDGE_FALLING;
                 break;
             case Edge.Both:
-                wiringPiISR(pin, INT_EDGE_BOTH, handler);
+                intEdge = INT_EDGE_BOTH;
                 break;
-            default: wiringPiISR(pin, INT_EDGE_SETUP, handler); 
+            default: intEdge =  INT_EDGE_SETUP; 
         }
+        wiringPiISR(pin, intEdge, handler); 
     }
 
 }
