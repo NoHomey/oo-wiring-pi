@@ -54,5 +54,12 @@ describe('OutputPin', () => {
                 expect(digitalWrite).lastCalledWith(12, HIGH);
             });
         });
+
+        describe('low', () => {
+            it('digitalWrites LOW to the pin which was used when constructed', () => {
+                pin.low();
+                expect(digitalWrite).lastCalledWith(12, LOW);
+            });
+        });
     });
 });
