@@ -68,5 +68,19 @@ describe('InputPin', () => {
                 expect(digitalRead).toBeCalledWith(12);
             });
         });
+
+        describe('isLow', () => {
+            it('returns true when digitalRead value is LOW', () => {
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(LOW);
+                expect(pin.isLow()).toBe(true);
+                expect(digitalRead).toBeCalledWith(12);
+            });
+
+            it('returns false when digitalRead value is HIGH', () => {
+                (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
+                expect(pin.isLow()).toBe(false);
+                expect(digitalRead).toBeCalledWith(12);
+            });
+        });
     });
 });
