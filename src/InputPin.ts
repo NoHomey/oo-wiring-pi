@@ -10,19 +10,19 @@ export enum Pull {
 
 export class InputPin extends Pin implements ReadablePin<boolean> {
     public constructor(pin: number, pull: Pull = Pull.Off) {
+        let pullControll: number;
         super(pin);
         pinMode(pin, INPUT);
         switch(pull) {
-            case Pull.Off:
-                pullUpDnControl(pin, PUD_OFF);
-                break;
             case Pull.Up:
-                pullUpDnControl(pin, PUD_UP);
+                pullControll = PUD_UP;
                 break;
             case Pull.Down:
-                pullUpDnControl(pin, PUD_DOWN);
+                pullControll = PUD_DOWN;
                 break;
+            default: pullControll = PUD_OFF;
         }
+        pullUpDnControl(pin, pullControll);
     }
 
     public read(): boolean {
