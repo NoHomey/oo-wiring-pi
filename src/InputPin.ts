@@ -11,6 +11,10 @@ export class InputPin extends Pin implements ReadablePin<boolean> {
     public read(): boolean {
         return digitalRead(this.pin) === HIGH;
     }
+
+    public isHigh(): boolean {
+        return digitalRead(this.pin) === HIGH;
+    }
 }
 
 export default InputPin;

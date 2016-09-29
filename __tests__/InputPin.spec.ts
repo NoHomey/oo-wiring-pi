@@ -39,6 +39,8 @@ describe('InputPin', () => {
 
         beforeEach(() => pin = new InputPin(12));
 
+        afterEach(() => pin.release());
+
         describe('read', () => {
             beforeEach(() => {
                 (digitalRead as DigitalReadMock).mockReturnValueOnce(HIGH);
