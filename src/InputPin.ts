@@ -1,5 +1,5 @@
 import Pin from './Pin';
-import { pinMode, INPUT, HIGH, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl } from 'wiring-pi';
+import { pinMode, INPUT, HIGH, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl, pulseIn } from 'wiring-pi';
 
 export enum Pull {
     Off,
@@ -30,6 +30,10 @@ export class InputPin extends Pin {
 
     public isLow(): boolean {
         return !this.isHigh();
+    }
+
+    public pulseInHighToLow(): number {
+        return pulseIn(this.pin, HIGH);
     }
 }
 
