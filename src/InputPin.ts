@@ -9,7 +9,7 @@ export class InputPin extends Pin implements ReadablePin<boolean> {
     }
 
     public read(): boolean {
-        return digitalRead(this.pin) === HIGH;
+        return this.isHigh();
     }
 
     public isHigh(): boolean {
@@ -17,7 +17,7 @@ export class InputPin extends Pin implements ReadablePin<boolean> {
     }
 
     public isLow(): boolean {
-        return digitalRead(this.pin) === LOW;
+        return !this.isHigh();
     }
 }
 
