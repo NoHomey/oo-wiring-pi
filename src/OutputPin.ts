@@ -15,6 +15,10 @@ export class OutputPin extends Pin implements WritablePin<boolean> {
     public high(): void {
         digitalWrite(this.pin, HIGH);
     }
+
+    public low(): void {
+        digitalWrite(this.pin, LOW);
+    }
 }
 
 export default OutputPin;
