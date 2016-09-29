@@ -9,9 +9,11 @@
         "src/Pin.ts",
         "src/InputPin.ts",
         "src/OutputPin.ts",
+        "src/InterruptHandlerPin.ts",
         "__tests__/Pin.spec.ts",
         "__tests__/InputPin.spec.ts",
-        "__tests__/OutputPin.spec.ts"
+        "__tests__/OutputPin.spec.ts",
+        "__tests__/InterruptHandlerPin.spec.ts"
     ],
     "exclude": [
         "node_modules"
