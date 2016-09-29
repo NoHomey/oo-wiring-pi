@@ -39,15 +39,6 @@ describe('OutputPin', () => {
 
         afterEach(() => pin.release());
 
-        describe('write', () => {
-            it('digitalWrites to the pin which was used when constructed', () => {
-                pin.write(true);
-                expect(digitalWrite).lastCalledWith(12, HIGH);
-                pin.write(false);
-                expect(digitalWrite).lastCalledWith(12, LOW);
-            });
-        });
-
         describe('high', () => {
             it('digitalWrites HIGH to the pin which was used when constructed', () => {
                 pin.high();

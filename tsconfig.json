@@ -7,8 +7,6 @@
     "files": [
         "typings/index.d.ts",
         "src/Pin.ts",
-        "src/ReadablePin.ts",
-        "src/WritablePin.ts",
         "src/InputPin.ts",
         "src/OutputPin.ts",
         "__tests__/Pin.spec.ts",

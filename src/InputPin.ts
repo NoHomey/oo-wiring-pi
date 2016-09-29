@@ -1,5 +1,4 @@
 import Pin from './Pin';
-import ReadablePin from './ReadablePin';
 import { pinMode, INPUT, HIGH, PUD_OFF, PUD_UP, PUD_DOWN, digitalRead, pullUpDnControl } from 'wiring-pi';
 
 export enum Pull {
@@ -8,7 +7,7 @@ export enum Pull {
     Down
 }
 
-export class InputPin extends Pin implements ReadablePin<boolean> {
+export class InputPin extends Pin {
     public constructor(pin: number, pull: Pull = Pull.Off) {
         let pullControll: number;
         super(pin);
@@ -23,10 +22,6 @@ export class InputPin extends Pin implements ReadablePin<boolean> {
             default: pullControll = PUD_OFF;
         }
         pullUpDnControl(pin, pullControll);
-    }
-
-    public read(): boolean {
-        return this.isHigh();
     }
 
     public isHigh(): boolean {
