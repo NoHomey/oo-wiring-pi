@@ -73,5 +73,10 @@ describe('SoftPwmOutputPin', () => {
             expect(() => pin.pwm(101)).toThrowError(RangeError);
             expect(() => pin.pwm(-1)).toThrowError(RangeError);
         });
+
+        it('throws descriptive RangeError if pwm value is not in range [0..range]', () => {
+            expect(() => pin.pwm(101)).toThrowError('value must be in range [0..range], 101 is not in range [0..100]');
+            expect(() => pin.pwm(-1)).toThrowError('value must be in range [0..range], -1 is not in range [0..100]');
+        });
     });
 });

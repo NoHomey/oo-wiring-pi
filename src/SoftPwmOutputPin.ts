@@ -8,7 +8,7 @@ export class SoftPwmOutputPin extends Pin {
         }
     }
 
-    public constructor(pin: number, value: number = 0, range: number = 100) {
+    public constructor(pin: number, value: number = 0, protected range: number = 100) {
         super(pin);
         if(range < 1) {
             throw new RangeError(`range must be positve integer, ${range} is less than 1`);
@@ -25,7 +25,7 @@ export class SoftPwmOutputPin extends Pin {
     }
 
     public pwm(pwm: number): void {
-
+        SoftPwmOutputPin.throwIfValueIsOutOfRange(pwm, this.range);
     }
 }
 
