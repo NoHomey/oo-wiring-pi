@@ -28,6 +28,11 @@ describe('SoftPwmOutputPin', () => {
         it('calls softPwmCreate with constructor arguments', () => {
             let pin: SoftPwmOutputPin = new SoftPwmOutputPin(6, 99, 101);
             expect(softPwmCreate).toBeCalledWith(6, 99, 101);
-        })
+        });
+
+        it('has 100 for default range value', () => {
+            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(7, 8);
+            expect(softPwmCreate).toBeCalledWith(7, 8, 100);
+        });
     });
 });
