@@ -60,9 +60,18 @@ describe('SoftPwmOutputPin', () => {
         });
 
         it('stops the soft pwm on the constructed pin throughout a call to softPwmStop', () => {
-            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(12)
+            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(12);
             pin.release();
             expect(softPwmStop).toBeCalledWith(12);
+        });
+    });
+
+    describe('pwm', () => {
+        let pin: SoftPwmOutputPin = new SoftPwmOutputPin(13);
+
+        it('throws RangeError if pwm value is not in range [0..range]', () => {
+            expect(() => pin.pwm(101)).toThrowError(RangeError);
+            expect(() => pin.pwm(-1)).toThrowError(RangeError);
         });
     });
 });

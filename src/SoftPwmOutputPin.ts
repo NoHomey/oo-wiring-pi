@@ -23,6 +23,10 @@ export class SoftPwmOutputPin extends Pin {
         softPwmStop(this.pin);
         super.release();
     }
+
+    public pwm(pwm: number): void {
+
+    }
 }
 
 export default SoftPwmOutputPin;
