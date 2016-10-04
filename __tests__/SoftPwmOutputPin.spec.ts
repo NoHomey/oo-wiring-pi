@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { softPwmCreate, softPwmStop } from 'wiring-pi';
+import { softPwmCreate, softPwmStop, softPwmWrite } from 'wiring-pi';
 import SoftPwmOutputPin from '../src/SoftPwmOutputPin';
 
 type SoftPwmCreateMock = jest.Mock<(pin: number, value: number, range: number) => number>;
@@ -77,6 +77,11 @@ describe('SoftPwmOutputPin', () => {
         it('throws descriptive RangeError if pwm value is not in range [0..range]', () => {
             expect(() => pin.pwm(101)).toThrowError('value must be in range [0..range], 101 is not in range [0..100]');
             expect(() => pin.pwm(-1)).toThrowError('value must be in range [0..range], -1 is not in range [0..100]');
+        });
+
+        it('calls softPwmWrite with passed pwm value and constructed pin', () => {
+            pin.pwm(99);
+            expect(softPwmWrite).toBeCalledWith(13, 99);
         });
     });
 });
