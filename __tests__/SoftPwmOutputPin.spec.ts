@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { softPwmCreate } from 'wiring-pi';
+import { softPwmCreate, softPwmStop } from 'wiring-pi';
 import SoftPwmOutputPin from '../src/SoftPwmOutputPin';
 
 type SoftPwmCreateMock = jest.Mock<(pin: number, value: number, range: number) => number>;
@@ -57,6 +57,12 @@ describe('SoftPwmOutputPin', () => {
                 notInUse.release();
                 let inUse: SoftPwmOutputPin = new SoftPwmOutputPin(11);
             }).not.toThrowError(Error);
+        });
+
+        it('stops the soft pwm on the constructed pin throughout a call to softPwmStop', () => {
+            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(12)
+            pin.release();
+            expect(softPwmStop).toBeCalledWith(12);
         });
     });
 });

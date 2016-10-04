@@ -66,7 +66,7 @@ describe('InterruptHandlerPin', () => {
             }).not.toThrowError();
         });
 
-        it('removes the inpterupt handler ot the constructed pin throughout a call to wiringPiISRCancel', () => {
+        it('removes the inpterupt handler on the constructed pin throughout a call to wiringPiISRCancel', () => {
             let pin: InterruptHandlerPin = new InterruptHandlerPin(8, handler);
             pin.release();
             expect(wiringPiISRCancel).toBeCalledWith(8);
