@@ -10,6 +10,9 @@ export class SoftPwmOutputPin extends Pin {
 
     public constructor(pin: number, value: number = 0, range: number = 100) {
         super(pin);
+        if(range < 1) {
+            throw new RangeError();
+        }
         SoftPwmOutputPin.throwIfValueIsOutOfRange(value, range);
         pinMode(pin, SOFT_PWM_OUTPUT);
     }
