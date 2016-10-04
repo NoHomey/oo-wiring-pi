@@ -34,5 +34,10 @@ describe('SoftPwmOutputPin', () => {
             let pin: SoftPwmOutputPin = new SoftPwmOutputPin(7, 8);
             expect(softPwmCreate).toBeCalledWith(7, 8, 100);
         });
+
+        it('has 0 for default value value', () => {
+            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(8);
+            expect(softPwmCreate).toBeCalledWith(8, 0, 100);
+        });
     });
 });
