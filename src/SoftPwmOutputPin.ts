@@ -15,7 +15,7 @@ export class SoftPwmOutputPin extends Pin {
         }
         SoftPwmOutputPin.throwIfValueIsOutOfRange(value, range);
         if(softPwmCreate(pin, value, range) !== 0) {
-            throw new Error();
+            throw new Error(`Could not set pin: ${pin} as SoftwarePwmOutputPin`);
         }
     }
 }
