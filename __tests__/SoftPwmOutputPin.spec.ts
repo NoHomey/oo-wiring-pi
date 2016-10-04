@@ -16,6 +16,10 @@ describe('SoftPwmOutputPin', () => {
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(2, 120, 110) }).toThrowError(RangeError);
         });
 
+        it('throws descriptive RangeError if value is not in range [0..range]', () => {
+            expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(5, 120, 110) }).toThrowError('value must be in range [0..range], 120 is not in range [0..110]');
+        });
+
         it('sets the given pin as SOFT_PWM_OUTPUT', () => {
             let pin: SoftPwmOutputPin = new SoftPwmOutputPin(3);
             expect(pinMode).toBeCalledWith(3, SOFT_PWM_OUTPUT);
