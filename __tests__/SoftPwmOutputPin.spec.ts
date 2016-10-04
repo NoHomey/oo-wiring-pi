@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { pinMode, SOFT_PWM_OUTPUT } from 'wiring-pi';
+import { pinMode, SOFT_PWM_OUTPUT, softPwmCreate } from 'wiring-pi';
 import SoftPwmOutputPin from '../src/SoftPwmOutputPin';
 
 describe('SoftPwmOutputPin', () => {
@@ -24,5 +24,10 @@ describe('SoftPwmOutputPin', () => {
             let pin: SoftPwmOutputPin = new SoftPwmOutputPin(3);
             expect(pinMode).toBeCalledWith(3, SOFT_PWM_OUTPUT);
         });
+
+        it('calls softPwmCreate with constructor arguments', () => {
+            let pin: SoftPwmOutputPin = new SoftPwmOutputPin(6, 99, 101);
+            expect(softPwmCreate).toBeCalledWith(6, 99, 101);
+        })
     });
 });
