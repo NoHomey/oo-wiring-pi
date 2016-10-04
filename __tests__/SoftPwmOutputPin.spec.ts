@@ -43,5 +43,10 @@ describe('SoftPwmOutputPin', () => {
             (softPwmCreate as SoftPwmCreateMock).mockImplementationOnce(() => -1);
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(9) }).toThrowError(Error);
         });
+
+        it('throws descriptive Error if softPwmCreate returns non-zero result', () => {
+            (softPwmCreate as SoftPwmCreateMock).mockImplementationOnce(() => -1);
+            expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(10) }).toThrowError('Could not set pin: 10 as SoftwarePwmOutputPin');
+        });
     });
 });
