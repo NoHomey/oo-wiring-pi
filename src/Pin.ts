@@ -7,7 +7,6 @@ export class Pin {
 		} else {
 			Pin.inUse.push(pin);
 		}
-		this.pin = pin;
 	}
 
 	public release(): void {

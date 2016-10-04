@@ -10,7 +10,7 @@ describe('SoftPwmOutputPin', () => {
         });
 
         it('throws RangeError if value is not in range [0..range]', () => {
-            expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(1, 120, 110) }).toThrowError(RangeError);
+            expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(2, 120, 110) }).toThrowError(RangeError);
         });
     });
 });
