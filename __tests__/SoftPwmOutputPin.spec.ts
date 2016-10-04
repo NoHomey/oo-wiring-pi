@@ -8,5 +8,9 @@ describe('SoftPwmOutputPin', () => {
             let pin: SoftPwmOutputPin = new SoftPwmOutputPin(1);
             expect(pinMode).toBeCalledWith(1, SOFT_PWM_OUTPUT);
         });
+
+        it('throws RangeError if value is not in range [0..range]', () => {
+            expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(1, 120, 110) }).toThrowError(RangeError);
+        });
     });
 });
