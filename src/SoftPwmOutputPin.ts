@@ -1,5 +1,5 @@
 import Pin from './Pin';
-import { pinMode, SOFT_PWM_OUTPUT } from 'wiring-pi';
+import { pinMode, SOFT_PWM_OUTPUT, softPwmCreate } from 'wiring-pi';
 
 export class SoftPwmOutputPin extends Pin {
     private static throwIfValueIsOutOfRange(value: number, range: number): void {
@@ -15,6 +15,7 @@ export class SoftPwmOutputPin extends Pin {
         }
         SoftPwmOutputPin.throwIfValueIsOutOfRange(value, range);
         pinMode(pin, SOFT_PWM_OUTPUT);
+        softPwmCreate(pin, value, range);
     }
 }
 
