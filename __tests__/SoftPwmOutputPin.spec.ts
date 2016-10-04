@@ -6,6 +6,8 @@ type SoftPwmCreateMock = jest.Mock<(pin: number, value: number, range: number) =
 
 describe('SoftPwmOutputPin', () => {
     describe('constructor', () => {
+        beforeEach(() => (softPwmCreate as SoftPwmCreateMock).mockReturnValueOnce(0));
+
         it('throws RangeError if range is less than 1', () => {
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(1, 0, 0) }).toThrowError(RangeError);
         });
@@ -38,7 +40,7 @@ describe('SoftPwmOutputPin', () => {
         });
 
         it('throws Error if softPwmCreate returns non-zero result', () => {
-            (softPwmCreate as SoftPwmCreateMock).mockReturnValueOnce(-1);
+            (softPwmCreate as SoftPwmCreateMock).mockImplementationOnce(() => -1);
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(9) }).toThrowError(Error);
         });
     });

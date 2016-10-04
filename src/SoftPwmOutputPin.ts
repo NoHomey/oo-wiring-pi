@@ -14,7 +14,9 @@ export class SoftPwmOutputPin extends Pin {
             throw new RangeError(`range must be positve integer, ${range} is less than 1`);
         }
         SoftPwmOutputPin.throwIfValueIsOutOfRange(value, range);
-        softPwmCreate(pin, value, range);
+        if(softPwmCreate(pin, value, range) !== 0) {
+            throw new Error();
+        }
     }
 }
 
