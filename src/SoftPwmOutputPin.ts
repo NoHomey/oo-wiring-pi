@@ -1,5 +1,5 @@
 import Pin from './Pin';
-import { pinMode, SOFT_PWM_OUTPUT, softPwmCreate } from 'wiring-pi';
+import { softPwmCreate } from 'wiring-pi';
 
 export class SoftPwmOutputPin extends Pin {
     private static throwIfValueIsOutOfRange(value: number, range: number): void {
@@ -14,7 +14,6 @@ export class SoftPwmOutputPin extends Pin {
             throw new RangeError(`range must be positve integer, ${range} is less than 1`);
         }
         SoftPwmOutputPin.throwIfValueIsOutOfRange(value, range);
-        pinMode(pin, SOFT_PWM_OUTPUT);
         softPwmCreate(pin, value, range);
     }
 }
