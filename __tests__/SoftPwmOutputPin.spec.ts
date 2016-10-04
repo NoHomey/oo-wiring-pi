@@ -4,10 +4,10 @@ import SoftPwmOutputPin from '../src/SoftPwmOutputPin';
 
 type SoftPwmCreateMock = jest.Mock<(pin: number, value: number, range: number) => number>;
 
+(softPwmCreate as SoftPwmCreateMock).mockImplementation(() => 0);
+
 describe('SoftPwmOutputPin', () => {
     describe('constructor', () => {
-        beforeEach(() => (softPwmCreate as SoftPwmCreateMock).mockReturnValueOnce(0));
-
         it('throws RangeError if range is less than 1', () => {
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(1, 0, 0) }).toThrowError(RangeError);
         });
@@ -40,13 +40,23 @@ describe('SoftPwmOutputPin', () => {
         });
 
         it('throws Error if softPwmCreate returns non-zero result', () => {
-            (softPwmCreate as SoftPwmCreateMock).mockImplementationOnce(() => -1);
+            (softPwmCreate as SoftPwmCreateMock).mockReturnValueOnce(() => -1);
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(9) }).toThrowError(Error);
         });
 
         it('throws descriptive Error if softPwmCreate returns non-zero result', () => {
-            (softPwmCreate as SoftPwmCreateMock).mockImplementationOnce(() => -1);
+            (softPwmCreate as SoftPwmCreateMock).mockReturnValueOnce(() => -1);
             expect(() => { let pin: SoftPwmOutputPin = new SoftPwmOutputPin(10) }).toThrowError('Could not set pin: 10 as SoftwarePwmOutputPin');
+        });
+    });
+
+    describe('release', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
+            expect(() => {
+                let notInUse: SoftPwmOutputPin = new SoftPwmOutputPin(11);
+                notInUse.release();
+                let inUse: SoftPwmOutputPin = new SoftPwmOutputPin(11);
+            }).not.toThrowError(Error);
         });
     });
 });
