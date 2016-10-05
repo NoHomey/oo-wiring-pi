@@ -1,5 +1,5 @@
 import Pin from './Pin';
-import { softToneCreate } from 'wiring-pi';
+import { softToneCreate, softToneStop } from 'wiring-pi';
 
 export class SoftToneOutputPin extends Pin {
     public constructor(pin: number) {
@@ -7,6 +7,11 @@ export class SoftToneOutputPin extends Pin {
         if(softToneCreate(pin) !== 0) {
             throw new Error(`Could not set pin: ${pin} as SoftwareToneOutputPin`);
         }
+    }
+
+    public release(): void {
+        softToneStop(this.pin);
+        super.release();
     }
 }
 
