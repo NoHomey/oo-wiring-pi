@@ -2,9 +2,20 @@ jest.mock('wiring-pi');
 import { softToneCreate } from 'wiring-pi';
 import SoftToneOutputPin from '../src/SoftToneOutputPin';
 
+type SoftToneCreateMock = jest.Mock<(pin: number) => number>;
+
+(softToneCreate as SoftToneCreateMock).mockImplementation(() => 0);
+
 describe('SoftToneOutputPin', () => {
-    it('creates soft tone on the given pin', () => {
-        let pin: SoftToneOutputPin = new SoftToneOutputPin(1);
-        expect(softToneCreate).toBeCalledWith(1);
+    describe('constructor', () => {
+        it('throws Error if softToneCreate returns non-zero result', () => {
+            (softToneCreate as SoftToneCreateMock).mockReturnValueOnce(() => -1);
+            expect(() => { let pin: SoftToneOutputPin = new SoftToneOutputPin(1) }).toThrowError(Error);
+        });
+
+        it('creates soft tone on the given pin', () => {
+            let pin: SoftToneOutputPin = new SoftToneOutputPin(4);
+            expect(softToneCreate).toBeCalledWith(4);
+        });
     });
 });
