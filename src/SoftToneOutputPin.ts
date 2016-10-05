@@ -5,7 +5,7 @@ export class SoftToneOutputPin extends Pin {
     public constructor(pin: number) {
         super(pin);
         if(softToneCreate(pin) !== 0) {
-            throw new Error();
+            throw new Error(`Could not set pin: ${pin} as SoftwareToneOutputPin`);
         }
     }
 }
