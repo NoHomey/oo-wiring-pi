@@ -16,7 +16,7 @@ export class SoftToneOutputPin extends Pin {
 
     public tone(tone: number): void {
         if((tone < 0) || (tone > 5000)) {
-            throw new RangeError();
+            throw new RangeError(`value must be in range [0..5000], ${tone} is not in range [0..5000]`);
         }
     }
 }
