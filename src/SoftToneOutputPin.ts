@@ -13,6 +13,12 @@ export class SoftToneOutputPin extends Pin {
         softToneStop(this.pin);
         super.release();
     }
+
+    public tone(tone: number): void {
+        if((tone < 0) || (tone > 5000)) {
+            throw new RangeError();
+        }
+    }
 }
 
 export default SoftToneOutputPin;
