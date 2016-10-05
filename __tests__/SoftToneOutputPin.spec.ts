@@ -23,4 +23,14 @@ describe('SoftToneOutputPin', () => {
             expect(softToneCreate).toBeCalledWith(4);
         });
     });
+
+    describe('release', () => {
+        it('releases the pin which prevents errors to be thrown when constructing new instance', () => {
+            expect(() => {
+                let notInUse: SoftToneOutputPin = new SoftToneOutputPin(5);
+                notInUse.release();
+                let inUse: SoftToneOutputPin = new SoftToneOutputPin(5);
+            }).not.toThrowError(Error);
+        });
+    });
 });
