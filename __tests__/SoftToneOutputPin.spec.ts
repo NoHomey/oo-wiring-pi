@@ -5,6 +5,6 @@ import SoftToneOutputPin from '../src/SoftToneOutputPin';
 describe('SoftToneOutputPin', () => {
     it('creates soft tone on the given pin', () => {
         let pin: SoftToneOutputPin = new SoftToneOutputPin(1);
-        expect(softToneCreate).toBeCalledWith(pin);
+        expect(softToneCreate).toBeCalledWith(1);
     });
 });
