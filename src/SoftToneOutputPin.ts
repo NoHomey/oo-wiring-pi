@@ -1,5 +1,5 @@
 import Pin from './Pin';
-import { softToneCreate, softToneStop } from 'wiring-pi';
+import { softToneCreate, softToneStop, softToneWrite } from 'wiring-pi';
 
 export class SoftToneOutputPin extends Pin {
     public constructor(pin: number) {
@@ -18,6 +18,7 @@ export class SoftToneOutputPin extends Pin {
         if((tone < 0) || (tone > 5000)) {
             throw new RangeError(`value must be in range [0..5000], ${tone} is not in range [0..5000]`);
         }
+        softToneWrite(this.pin, tone);
     }
 }
 
