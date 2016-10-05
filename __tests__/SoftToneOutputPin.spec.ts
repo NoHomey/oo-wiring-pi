@@ -39,4 +39,13 @@ describe('SoftToneOutputPin', () => {
             expect(softToneStop).toBeCalledWith(6);
         });
     });
+
+    describe('tone', () => {
+        let pin: SoftToneOutputPin = new SoftToneOutputPin(7);
+
+        it('thorws RangeError if tone value is not in range [0..5000]', () => {
+            expect(() => pin.tone(-1)).toThrowError(RangeError);
+            expect(() => pin.tone(5001)).toThrowError(RangeError);
+        });
+    });
 });
