@@ -47,5 +47,10 @@ describe('SoftToneOutputPin', () => {
             expect(() => pin.tone(-1)).toThrowError(RangeError);
             expect(() => pin.tone(5001)).toThrowError(RangeError);
         });
+
+        it('thorws descriptive RangeError if tone value is not in range [0..5000]', () => {
+            expect(() => pin.tone(-1)).toThrowError('value must be in range [0..5000], -1 is not in range [0..5000]');
+            expect(() => pin.tone(5001)).toThrowError('value must be in range [0..5000], 5001 is not in range [0..5000]');
+        });
     });
 });
