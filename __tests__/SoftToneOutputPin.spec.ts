@@ -1,5 +1,5 @@
 jest.mock('wiring-pi');
-import { softToneCreate, softToneStop } from 'wiring-pi'; 
+import { softToneCreate, softToneStop, softToneWrite } from 'wiring-pi'; 
 import SoftToneOutputPin from '../src/SoftToneOutputPin';
 
 type SoftToneCreateMock = jest.Mock<(pin: number) => number>;
@@ -51,6 +51,11 @@ describe('SoftToneOutputPin', () => {
         it('thorws descriptive RangeError if tone value is not in range [0..5000]', () => {
             expect(() => pin.tone(-1)).toThrowError('value must be in range [0..5000], -1 is not in range [0..5000]');
             expect(() => pin.tone(5001)).toThrowError('value must be in range [0..5000], 5001 is not in range [0..5000]');
+        });
+
+        it('calls softToneWrite with passed pwm value and constructed pin', () => {
+            pin.tone(4999);
+            expect(softToneWrite).toBeCalledWith(7, 4999);
         });
     });
 });
