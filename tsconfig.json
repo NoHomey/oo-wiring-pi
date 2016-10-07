@@ -6,6 +6,10 @@
     },
     "files": [
         "typings/index.d.ts",
+        "src/SpecialPins/I2CPins",
+        "src/SpecialPins/SPIcialPins",
+        "src/SpecialPins/SerialPins",
+        "src/SpecialPins/SpecialPins",
         "src/Pin.ts",
         "src/InputPin.ts",
         "src/OutputPin.ts",
