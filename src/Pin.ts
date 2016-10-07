@@ -1,4 +1,6 @@
-export class Pin {
+import Releasable from './Releasable';
+
+export class Pin implements Releasable {
 	private static inUse: Array<number> = [];
 	
 	public constructor(protected pin: number) {

@@ -1,7 +1,8 @@
 import Pin from './Pin';
+import Releasable from './Releasable';
 import { softPwmCreate, softPwmStop, softPwmWrite } from 'wiring-pi';
 
-export class SoftPwmOutputPin extends Pin {
+export class SoftPwmOutputPin extends Pin implements Releasable {
     private static throwIfValueIsOutOfRange(value: number, range: number): void {
         if((value < 0) || (value > range)) {
             throw new RangeError(`value must be in range [0..range], ${value} is not in range [0..${range}]`);

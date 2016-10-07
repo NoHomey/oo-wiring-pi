@@ -1,7 +1,8 @@
 import Pin from './Pin';
+import Releasable from './Releasable';
 import { softToneCreate, softToneStop, softToneWrite } from 'wiring-pi';
 
-export class SoftToneOutputPin extends Pin {
+export class SoftToneOutputPin extends Pin implements Releasable {
     public constructor(pin: number) {
         super(pin);
         if(softToneCreate(pin) !== 0) {

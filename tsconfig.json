@@ -7,12 +7,13 @@
     "files": [
         "typings/index.d.ts",
         "src/SpecialPins/I2CPins.ts",
-        "src/SpecialPins/SPIcialPins.ts",
+        "src/SpecialPins/SPIPins.ts",
         "src/SpecialPins/SerialPins.ts",
         "src/SpecialPins/SpecialPins.ts",
         "src/SpecialPins/wpiSpecialPins.ts",
         "src/SpecialPins/bcmSpecialPins.ts",
         "src/SpecialPins/physSpecialPins.ts",
+        "src/Releasable.ts",
         "src/PinAllocator.ts",
         "src/Pin.ts",
         "src/InputPin.ts",
@@ -25,7 +26,8 @@
         "__tests__/OutputPin.spec.ts",
         "__tests__/InterruptHandlerPin.spec.ts",
         "__tests__/SoftPwmOutputPin.spec.ts",
-        "__tests__/SoftToneOutputPin.spec.ts"
+        "__tests__/SoftToneOutputPin.spec.ts",
+        "__tests__/PinAllocator.spec.ts"
     ],
     "exclude": [
         "node_modules"

@@ -1,3 +1,4 @@
+import Releasable from './Releasable';
 import { InputPin, Pull } from './InputPin';
 import { INT_EDGE_SETUP, INT_EDGE_RISING, INT_EDGE_FALLING, INT_EDGE_BOTH , wiringPiISR, wiringPiISRCancel } from 'wiring-pi';
 
@@ -12,7 +13,7 @@ export enum Edge {
     Setup
 }
 
-export class InterruptHandlerPin extends InputPin {
+export class InterruptHandlerPin extends InputPin implements Releasable {
     public constructor(pin: number, handler: InterruptHandler, pull: Pull = Pull.Off, edge: Edge = Edge.Setup) {
         let intEdge: number;
         super(pin, pull);
