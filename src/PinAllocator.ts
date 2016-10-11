@@ -1,5 +1,5 @@
-import SpecialPins from './SpecialPins/SpecialPins'
-
+import SpecialPins from './SpecialPins/SpecialPins';
+import wpiSpecialPins from './SpecialPins/wpiSpecialPins';
 import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
 export enum PinEnumerator {
@@ -15,7 +15,10 @@ export class PinAllocator {
         switch(pinEnumerator) {
             case PinEnumerator.bcm: wiringPiSetupGpio();
             case PinEnumerator.phys: wiringPiSetupPhys();
-            default: wiringPiSetup();
+            default: {
+                wiringPiSetup();
+                PinAllocator.allSpecialPins = wpiSpecialPins;
+            }
         }
     }
 
