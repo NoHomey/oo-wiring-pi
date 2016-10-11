@@ -53,4 +53,14 @@ describe('PinAllocator', () => {
             expect(PinAllocator.specialPins).toBe(physSpecialPins);
         });
     });
+
+    describe('allocate', () => {
+        it('allocates the given pin if it is not allocated', () => {
+            expect(() => PinAllocator.allocate(1)).not.toThrow();
+        });
+
+        it('throws Error if the given pin is allocated', () => {
+            expect(() => PinAllocator.allocate(1)).toThrowError();
+        });
+    });
 });
