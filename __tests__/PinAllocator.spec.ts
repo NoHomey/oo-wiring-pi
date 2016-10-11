@@ -68,5 +68,11 @@ describe('PinAllocator', () => {
         it('throws Error if the given has not been allocated', () => {
             expect(() => PinAllocator.release(2)).toThrowError('pin: 2 can not been released, it has not been allocated');
         });
+
+        it('releases the given pin if it has been allocated', () => {
+            PinAllocator.allocate(2);
+            expect(() => PinAllocator.release(2)).not.toThrowError();
+            expect(() => PinAllocator.release(2)).toThrowError('pin: 2 can not been released, it has not been allocated');
+        });
     });
 });
