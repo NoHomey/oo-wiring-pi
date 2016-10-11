@@ -5,7 +5,6 @@ import physSpecialPins from '../src/SpecialPins/physSpecialPins';
 import { PinAllocator, PinEnumerator } from '../src/PinAllocator';
 import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
-
 describe('PinAllocator', () => {
     describe('when setup has not been called first', () => {
         describe('specialPins', () => {
@@ -73,6 +72,13 @@ describe('PinAllocator', () => {
             PinAllocator.allocate(2);
             expect(() => PinAllocator.release(2)).not.toThrowError();
             expect(() => PinAllocator.release(2)).toThrowError('pin: 2 can not been released, it is not allocated');
+        });
+
+        it('calls release if it is given a Releasable', () => {
+            const release: jest.Mock<() => void> = jest.fn<() => void>();
+            expect(release).not.toBeCalled();
+            expect(() => PinAllocator.release({ release: release })).not.toThrowError();
+            expect(release).toBeCalled();
         });
     });
 });

@@ -2,6 +2,7 @@ import SpecialPins from './SpecialPins/SpecialPins';
 import wpiSpecialPins from './SpecialPins/wpiSpecialPins';
 import bcmSpecialPins from './SpecialPins/bcmSpecialPins';
 import physSpecialPins from './SpecialPins/physSpecialPins';
+import Releasable from './Releasable';
 import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
 export enum PinEnumerator {
@@ -50,13 +51,15 @@ export class PinAllocator {
 		}
     }
 
-    public static release(pin: number): void {
-        const allocatedIndex: number = PinAllocator.allocated.indexOf(pin);
-        if(allocatedIndex === constants.minusOne) {
-			throw new Error(`pin: ${pin} can not been released, it is not allocated`);	
-		} else {
-			PinAllocator.allocated.splice(allocatedIndex, constants.one);
-		}
+    public static release(releasable: number | Releasable): void {
+        if(typeof releasable === 'number') {
+            const allocatedIndex: number = PinAllocator.allocated.indexOf(releasable);
+            if(allocatedIndex === constants.minusOne) {
+                throw new Error(`pin: ${releasable} can not been released, it is not allocated`);	
+            } else {
+                PinAllocator.allocated.splice(allocatedIndex, constants.one);
+            }
+        }
     }
 }
 
