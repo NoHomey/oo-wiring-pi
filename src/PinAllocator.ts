@@ -11,6 +11,7 @@ export enum PinEnumerator {
 }
 
 export class PinAllocator {
+    private static setuped: boolean = false;
     private static allSpecialPins: SpecialPins;
 
     public static setup(pinEnumerator: PinEnumerator = PinEnumerator.wpi): void {
@@ -27,9 +28,11 @@ export class PinAllocator {
                 wiringPiSetup();
                 PinAllocator.allSpecialPins = wpiSpecialPins;
         }
+        PinAllocator.setuped = true;
     }
 
     public static get specialPins(): SpecialPins {
+        if(!PinAllocator.setuped) throw new Error('PinAllocator.setup has not been called, PinAllocator.setup must be called before using any other functionality from oo-wiring-pi');
         return PinAllocator.allSpecialPins;
     }
 }
