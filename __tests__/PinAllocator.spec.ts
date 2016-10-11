@@ -1,6 +1,6 @@
 jest.mock('wiring-pi');
 import { PinAllocator, PinEnumerator } from '../src/PinAllocator';
-import { wiringPiSetup, wiringPiSetupGpio } from 'wiring-pi';
+import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
 
 describe('PinAllocator', () => {
@@ -18,6 +18,11 @@ describe('PinAllocator', () => {
         it('calls wiringPiSetupGpio when pinEnumerator is PinEnumerator.bcm', () => {
             PinAllocator.setup(PinEnumerator.bcm);
             expect(wiringPiSetupGpio).toBeCalled();
+        });
+
+        it('calls wiringPiSetupPhys when pinEnumerator is PinEnumerator.phys', () => {
+            PinAllocator.setup(PinEnumerator.phys);
+            expect(wiringPiSetupPhys).toBeCalled();
         });
     });
 });
