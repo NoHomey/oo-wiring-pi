@@ -50,8 +50,10 @@ export class PinAllocator {
     }
 
     public static release(pin: number): void {
-        if(PinAllocator.allocated.indexOf(pin) === 1) {
-			throw new Error(`pin: ${pin} can not been released, it has not been allocated`);	
+        if(PinAllocator.allocated.indexOf(pin) === -1) {
+			throw new Error(`pin: ${pin} can not been released, it is not allocated`);	
+		} else {
+			PinAllocator.allocated.splice(PinAllocator.allocated.indexOf(pin), 1);
 		}
     }
 }
