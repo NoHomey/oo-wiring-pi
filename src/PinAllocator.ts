@@ -14,6 +14,7 @@ export enum PinEnumerator {
 namespace constants {
     export const minusOne: number = -1;
     export const one: number = 1;
+    export const typeOfNumber: string = 'number';
 }
 
 export class PinAllocator {
@@ -52,15 +53,15 @@ export class PinAllocator {
     }
 
     public static release(releasable: number | Releasable): void {
-        if(typeof releasable === 'number') {
-            const allocatedIndex: number = PinAllocator.allocated.indexOf(releasable);
+        if(typeof releasable === constants.typeOfNumber) {
+            const allocatedIndex: number = PinAllocator.allocated.indexOf(releasable as number);
             if(allocatedIndex === constants.minusOne) {
                 throw new Error(`pin: ${releasable} can not been released, it is not allocated`);	
             } else {
                 PinAllocator.allocated.splice(allocatedIndex, constants.one);
             }
         } else {
-            releasable.release();
+            (releasable as Releasable).release();
         }
     }
 }
