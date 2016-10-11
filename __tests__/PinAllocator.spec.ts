@@ -1,6 +1,7 @@
 jest.mock('wiring-pi');
 import wpiSpecialPins from '../src/SpecialPins/wpiSpecialPins';
 import bcmSpecialPins from '../src/SpecialPins/bcmSpecialPins';
+import physSpecialPins from '../src/SpecialPins/physSpecialPins';
 import { PinAllocator, PinEnumerator } from '../src/PinAllocator';
 import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
@@ -37,6 +38,11 @@ describe('PinAllocator', () => {
         it('returns bcmSpecialPins after wiringPiSetupGpio has been called', () => {
             PinAllocator.setup(PinEnumerator.bcm);
             expect(PinAllocator.specialPins).toBe(bcmSpecialPins);
+        });
+
+        it('returns physSpecialPins after wiringPiSetupPhys has been called', () => {
+            PinAllocator.setup(PinEnumerator.phys);
+            expect(PinAllocator.specialPins).toBe(physSpecialPins);
         });
     });
 });
