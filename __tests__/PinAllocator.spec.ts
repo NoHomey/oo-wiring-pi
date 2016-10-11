@@ -7,6 +7,14 @@ import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
 
 describe('PinAllocator', () => {
+    describe('when setup has not been called first', () => {
+        describe('specialPins', () => {
+            it('throws Error if setup has not been called first', () => {
+                expect(() => PinAllocator.specialPins).toThrowError('PinAllocator.setup has not been called, PinAllocator.setup must be called before using any other functionality from oo-wiring-pi');
+            });
+        });
+    });
+
     describe('setup', () => {
         it('uses wpi as a default pin enumerator', () => {
             PinAllocator.setup();
