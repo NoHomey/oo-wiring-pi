@@ -50,7 +50,9 @@ export class PinAllocator {
     }
 
     public static release(pin: number): void {
-        pin;
+        if(PinAllocator.allocated.indexOf(pin) === 1) {
+			throw new Error(`pin: ${pin} can not been released, it has not been allocated`);	
+		}
     }
 }
 
