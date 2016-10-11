@@ -1,4 +1,4 @@
-import { wiringPiSetup } from 'wiring-pi';
+import { wiringPiSetup, wiringPiSetupGpio } from 'wiring-pi';
 
 export enum PinEnumerator {
     wpi,
@@ -9,6 +9,7 @@ export enum PinEnumerator {
 export class PinAllocator {
     public static setup(pinEnumerator: PinEnumerator = PinEnumerator.wpi): void {
         switch(pinEnumerator) {
+            case PinEnumerator.bcm: wiringPiSetupGpio();
             default: wiringPiSetup();
         }
     }
