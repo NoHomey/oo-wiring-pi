@@ -59,6 +59,8 @@ export class PinAllocator {
             } else {
                 PinAllocator.allocated.splice(allocatedIndex, constants.one);
             }
+        } else {
+            releasable.release();
         }
     }
 }
