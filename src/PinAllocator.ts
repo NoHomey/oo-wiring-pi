@@ -43,10 +43,14 @@ export class PinAllocator {
 
     public static allocate(pin: number): void {
         if(PinAllocator.allocated.indexOf(pin) !== constants.minusOne) {
-			throw new Error(`pin: ${pin} is in use, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
+			throw new Error(`pin: ${pin} is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
 		} else {
 			PinAllocator.allocated.push(pin);
 		}
+    }
+
+    public static release(pin: number): void {
+        pin;
     }
 }
 
