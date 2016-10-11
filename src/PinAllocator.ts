@@ -1,12 +1,14 @@
-import SpecialPins from './SpecialPins/SpecialPins';
-import wpiSpecialPins from './SpecialPins/wpiSpecialPins';
-import bcmSpecialPins from './SpecialPins/bcmSpecialPins';
-import physSpecialPins from './SpecialPins/physSpecialPins';
-import Releasable from './Releasable';
+export enum PinEnumerator {
+    wpi,
+    bcm,
+    phys
+}
 
 export class PinAllocator {
-    public static release(instance: Releasable): void {
+    public static setup(pinEnumerator: PinEnumerator = PinEnumerator.wpi): void {
+        switch(pinEnumerator) {
 
+        }
     }
 }
 

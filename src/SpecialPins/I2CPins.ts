@@ -1,6 +1,6 @@
 export interface I2CPins {
-    sda: number;
-    scl: number;
+    readonly sda: number;
+    readonly scl: number;
 }
 
 export default I2CPins;

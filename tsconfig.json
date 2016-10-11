@@ -2,32 +2,16 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true
     },
-    "files": [
+    "include": [
         "typings/index.d.ts",
-        "src/SpecialPins/I2CPins.ts",
-        "src/SpecialPins/SPIPins.ts",
-        "src/SpecialPins/SerialPins.ts",
-        "src/SpecialPins/SpecialPins.ts",
-        "src/SpecialPins/wpiSpecialPins.ts",
-        "src/SpecialPins/bcmSpecialPins.ts",
-        "src/SpecialPins/physSpecialPins.ts",
-        "src/Releasable.ts",
-        "src/PinAllocator.ts",
-        "src/Pin.ts",
-        "src/InputPin.ts",
-        "src/OutputPin.ts",
-        "src/InterruptHandlerPin.ts",
-        "src/SoftPwmOutputPin.ts",
-        "src/SoftToneOutputPin.ts",
-        "__tests__/Pin.spec.ts",
-        "__tests__/InputPin.spec.ts",
-        "__tests__/OutputPin.spec.ts",
-        "__tests__/InterruptHandlerPin.spec.ts",
-        "__tests__/SoftPwmOutputPin.spec.ts",
-        "__tests__/SoftToneOutputPin.spec.ts",
-        "__tests__/PinAllocator.spec.ts"
+        "src/**/*",
+        "__tests__/**/*"
     ],
     "exclude": [
         "node_modules"

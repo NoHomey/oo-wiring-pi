@@ -5,7 +5,7 @@ import OutputPin from '../src/OutputPin';
 describe('OutputPin', () => {
     describe('constructor', () => {
         it('sets the given pin as OUTPUT', () => {
-            let pin: OutputPin = new OutputPin(9);
+            new OutputPin(9);
             expect(pinMode).toBeCalledWith(9, OUTPUT);
         });
     });

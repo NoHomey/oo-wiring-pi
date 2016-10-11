@@ -1,6 +1,6 @@
 export interface SerialPins {
-    txd: number;
-    rxd: number;
+    readonly txd: number;
+    readonly rxd: number;
 }
 
 export default SerialPins;

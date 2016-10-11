@@ -8,22 +8,22 @@ type PulseInMock = jest.Mock<(pin: number, state: number) => number>;
 describe('InputPin', () => {
     describe('constructor', () => {
         it('sets the given pin as INPUT', () => {
-            let pin: InputPin = new InputPin(9);
+            new InputPin(9);
             expect(pinMode).toBeCalledWith(9, INPUT);
         });
 
         it('sets pullUpDnControl to PUD_OFF if no pull up/down is passed', () => {
-            let pin: InputPin = new InputPin(1);
+            new InputPin(1);
             expect(pullUpDnControl).toBeCalledWith(1, PUD_OFF);
         });
 
         it('sets pullUpDnControl to PUD_UP if pull is Pull.Up', () => {
-            let pin: InputPin = new InputPin(2, Pull.Up);
+            new InputPin(2, Pull.Up);
             expect(pullUpDnControl).toBeCalledWith(2, PUD_UP);
         });
 
         it('sets pullUpDnControl to PUD_DOWN if pull is Pull.Down', () => {
-            let pin: InputPin = new InputPin(4, Pull.Down);
+            new InputPin(4, Pull.Down);
             expect(pullUpDnControl).toBeCalledWith(4, PUD_DOWN);
         });
     });
