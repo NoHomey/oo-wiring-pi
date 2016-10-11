@@ -1,6 +1,7 @@
 import SpecialPins from './SpecialPins/SpecialPins';
 import wpiSpecialPins from './SpecialPins/wpiSpecialPins';
 import bcmSpecialPins from './SpecialPins/bcmSpecialPins';
+import physSpecialPins from './SpecialPins/physSpecialPins';
 import { wiringPiSetup, wiringPiSetupGpio, wiringPiSetupPhys } from 'wiring-pi';
 
 export enum PinEnumerator {
@@ -14,15 +15,17 @@ export class PinAllocator {
 
     public static setup(pinEnumerator: PinEnumerator = PinEnumerator.wpi): void {
         switch(pinEnumerator) {
-            case PinEnumerator.bcm: {
+            case PinEnumerator.bcm:
                 wiringPiSetupGpio();
                 PinAllocator.allSpecialPins = bcmSpecialPins;
-            }
-            case PinEnumerator.phys: wiringPiSetupPhys();
-            default: {
+                break;
+            case PinEnumerator.phys:
+                wiringPiSetupPhys();
+                PinAllocator.allSpecialPins = physSpecialPins;
+                break;
+            default:
                 wiringPiSetup();
                 PinAllocator.allSpecialPins = wpiSpecialPins;
-            }
         }
     }
 
