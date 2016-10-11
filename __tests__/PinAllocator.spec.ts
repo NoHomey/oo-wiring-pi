@@ -60,7 +60,7 @@ describe('PinAllocator', () => {
         });
 
         it('throws Error if the given pin is allocated', () => {
-            expect(() => PinAllocator.allocate(1)).toThrowError();
+            expect(() => PinAllocator.allocate(1)).toThrowError('pin: 1 is in use, call PinAllocator.release with the given pin or with the instace constructed with the given pin');
         });
     });
 });

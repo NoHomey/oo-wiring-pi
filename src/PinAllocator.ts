@@ -10,9 +10,14 @@ export enum PinEnumerator {
     phys
 }
 
+namespace constants {
+    export const minusOne: number = -1;
+}
+
 export class PinAllocator {
     private static setuped: boolean = false;
     private static allSpecialPins: SpecialPins;
+    private static allocated: Array<number> = [];
 
     public static setup(pinEnumerator: PinEnumerator = PinEnumerator.wpi): void {
         switch(pinEnumerator) {
@@ -37,7 +42,11 @@ export class PinAllocator {
     }
 
     public static allocate(pin: number): void {
-        pin;
+        if(PinAllocator.allocated.indexOf(pin) !== constants.minusOne) {
+			throw new Error(`pin: ${pin} is in use, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
+		} else {
+			PinAllocator.allocated.push(pin);
+		}
     }
 }
 
