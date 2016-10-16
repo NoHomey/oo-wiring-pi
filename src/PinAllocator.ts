@@ -55,16 +55,16 @@ export class PinAllocator {
         }
     }
 
-    public static release(releasable: number | Array<number>): void {
-        if(typeof releasable === constants.typeOfNumber) {
-            const allocatedIndex: number = PinAllocator.allocated.indexOf(releasable as number);
+    public static release(pin: number | Array<number>): void {
+        if(typeof pin === constants.typeOfNumber) {
+            const allocatedIndex: number = PinAllocator.allocated.indexOf(pin as number);
             if(allocatedIndex === constants.minusOne) {
-                throw new Error(`pin: ${releasable} can not been released, it is not allocated`);	
+                throw new Error(`pin: ${pin} can not been released, it is not allocated`);	
             } else {
                 PinAllocator.allocated.splice(allocatedIndex, constants.one);
             }
         } else {
-            
+            (pin as Array<number>).forEach(PinAllocator.release);
         }
     }
 }
