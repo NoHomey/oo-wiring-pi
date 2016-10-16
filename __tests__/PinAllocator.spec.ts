@@ -61,6 +61,14 @@ describe('PinAllocator', () => {
         it('throws Error if the given pin is allocated', () => {
             expect(() => PinAllocator.allocate(1)).toThrowError('pin: 1 is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin');
         });
+
+        it('allocates the given pins if they have not been allocated', () => {
+            expect(() => PinAllocator.allocate([3, 5, 7, 9])).not.toThrow();
+        });
+
+        it('throws Error if any of the given pins is allocated', () => {
+            expect(() => PinAllocator.allocate([3, 5, 7, 9])).toThrowError('pin: 3 is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin');
+        });
     });
 
     describe('release', () => {

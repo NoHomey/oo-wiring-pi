@@ -14,7 +14,7 @@ export enum PinEnumerator {
 namespace constants {
     export const minusOne: number = -1;
     export const one: number = 1;
-    export const typeOfNumber: string = 'number';
+    export const typeOfNumber: 'number' = 'number';
 }
 
 export class PinAllocator {
@@ -44,11 +44,11 @@ export class PinAllocator {
         return PinAllocator.allSpecialPins;
     }
 
-    public static allocate(pin: number): void {
-        if(PinAllocator.allocated.indexOf(pin) !== constants.minusOne) {
+    public static allocate(pin: number | Array<number>): void {
+        if(PinAllocator.allocated.indexOf(pin as number) !== constants.minusOne) {
 			throw new Error(`pin: ${pin} is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
 		} else {
-			PinAllocator.allocated.push(pin);
+			PinAllocator.allocated.push(pin as number);
 		}
     }
 
