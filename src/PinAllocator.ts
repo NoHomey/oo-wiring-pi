@@ -45,11 +45,15 @@ export class PinAllocator {
     }
 
     public static allocate(pin: number | Array<number>): void {
-        if(PinAllocator.allocated.indexOf(pin as number) !== constants.minusOne) {
-			throw new Error(`pin: ${pin} is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
-		} else {
-			PinAllocator.allocated.push(pin as number);
-		}
+        if(typeof pin === constants.typeOfNumber) {
+            if(PinAllocator.allocated.indexOf(pin as number) !== constants.minusOne) {
+                throw new Error(`pin: ${pin} is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin`);	
+            } else {
+                PinAllocator.allocated.push(pin as number);
+            }
+        } else {
+            (pin as Array<number>).forEach(PinAllocator.allocate);
+        }
     }
 
     public static release(releasable: number | Releasable): void {
