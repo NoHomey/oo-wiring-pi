@@ -72,7 +72,7 @@ describe('PinAllocator', () => {
     });
 
     describe('release', () => {
-        it('throws Error if the given has not been allocated', () => {
+        it('throws Error if the given pin has not been allocated', () => {
             expect(() => PinAllocator.release(2)).toThrowError('pin: 2 can not been released, it is not allocated');
         });
 
@@ -82,11 +82,14 @@ describe('PinAllocator', () => {
             expect(() => PinAllocator.release(2)).toThrowError('pin: 2 can not been released, it is not allocated');
         });
 
-        it('calls release if it is given a Releasable', () => {
-            const release: jest.Mock<() => void> = jest.fn<() => void>();
-            expect(release).not.toBeCalled();
-            expect(() => PinAllocator.release({ release: release })).not.toThrowError();
-            expect(release).toBeCalled();
+        it('throws Error if any of the given pins have not been allocated', () => {
+            expect(() => PinAllocator.release([4, 6, 8])).toThrowError('pin: 4 can not been released, it is not allocated');
         });
+
+        it('releases the given pins that have not been allocated', () => {
+            PinAllocator.allocate([4, 6, 8]);
+            expect(() => PinAllocator.release([4, 6, 8])).not.toThrowError();
+            expect(() => PinAllocator.release([4, 6, 8])).toThrowError('pin: 4 can not been released, it is not allocated');
+        });;
     });
 });
