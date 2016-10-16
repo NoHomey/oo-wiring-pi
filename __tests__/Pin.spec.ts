@@ -17,7 +17,7 @@ describe('Pin', () => {
             expect(() => {
                 new Pin(6);
                 new Pin(6);
-            }).toThrowError('pin: 6 is in use, call .release() on the first instance constructed with pin: 6 to change pin mode or settings');
+            }).toThrowError('pin: 6 is allocated, call PinAllocator.release with the given pin or with the instace constructed with the given pin');
         });
     });
 
