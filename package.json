@@ -10,7 +10,6 @@
     "map-cov": "remap-istanbul -i ./coverage/coverage-final.json -t lcovonly -o ./lcov.info",
     "report-cov": "codeclimate-test-reporter < ./lcov.info",
     "coverage": "npm run jest-cov && npm run map-cov && npm run report-cov",
-    "typings": "typings install",
     "npm": "npm run clean && tsc -d -p . && mv ./src/*.js . && mv ./src/*.d.ts .",
     "clean": "rm -f ./src/*.js* ./src/*/*.js* ./__tests__/*.d.ts ./__tests__/*.js* ./lcov.info  && rm -f -R ./coverage"
   },
@@ -52,10 +51,12 @@
   },
   "devDependencies": {
     "codeclimate-test-reporter": "^0.4.0",
-    "jest": "^15.1.1",
-    "remap-istanbul": "^0.6.4",
+    "jest": "^16.0.0",
+    "remap-istanbul": "^0.7.0",
     "typescript": "^2.0.3",
-    "typings": "^1.4.0",
-    "wiring-pi": "^2.2.0"
+    "wiring-pi": "^2.2.0",
+    "@types/node": "^6.0.45",
+    "@types/wiring-pi": "^2.1.2",
+    "@types/jest": "^15.1.32"
   }
 }
