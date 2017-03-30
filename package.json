@@ -3,8 +3,15 @@
   "version": "0.0.0",
   "description": "Object Oriented WiringPi for typescript/javascript",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
-    "test": "tsc && jest --verbose --testPathPattern __tests__/.+.spec.js"
+    "test": "tsc && jest --verbose --testPathPattern __tests__/.+\\.spec\\.js",
+    "jest-cov": "tsc --sourceMap -p . && jest --verbose --coverage --testPathPattern __tests__/.+\\.spec\\.js",
+    "map-cov": "remap-istanbul -i ./coverage/coverage-final.json -t lcovonly -o ./lcov.info",
+    "report-cov": "codeclimate-test-reporter < ./lcov.info",
+    "coverage": "npm run jest-cov && npm run map-cov && npm run report-cov",
+    "npm": "npm run clean && tsc -d -p . && mv ./src/*.js . && mv ./src/*.d.ts .",
+    "clean": "rm -f ./src/*.js* ./src/*/*.js* ./__tests__/*.d.ts ./__tests__/*.js* ./lcov.info  && rm -f -R ./coverage"
   },
   "repository": {
     "type": "git",
@@ -37,5 +44,19 @@
   "bugs": {
     "url": "https://github.com/NoHomey/oo-wiring-pi/issues"
   },
-  "homepage": "https://github.com/NoHomey/oo-wiring-pi#readme"
+  "homepage": "https://github.com/NoHomey/oo-wiring-pi#readme",
+  "dependencies": {},
+  "peerDependencies": {
+    "wiring-pi": "^2.1.1"
+  },
+  "devDependencies": {
+    "codeclimate-test-reporter": "^0.4.0",
+    "jest": "^16.0.0",
+    "remap-istanbul": "^0.7.0",
+    "typescript": "^2.0.3",
+    "wiring-pi": "^2.2.0",
+    "@types/node": "^6.0.45",
+    "@types/wiring-pi": "^2.1.2",
+    "@types/jest": "^15.1.32"
+  }
 }

@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true
+    },
+    "include": [
+        "src/**/*",
+        "__tests__/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
