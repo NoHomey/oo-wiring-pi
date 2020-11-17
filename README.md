@@ -17,8 +17,6 @@ Install with npm:
 $ npm install oo-wiring-pi
 ```
 
-[![NPM](https://nodei.co/npm/oo-wiring-pi.png?downloads=true&stars=true)](https://www.npmjs.com/package/oo-wiring-pi)
-
 # Testing
 
 1. `npm install`
